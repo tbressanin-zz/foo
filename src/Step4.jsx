@@ -34,7 +34,6 @@ function generatorAllFields(arrFields) {
             <Field name="{field.id}" as="select" placeholder="Favorite Color">
               <SelectOptions data={field.options} />
             </Field>
-
             <ErrorMessage name="{field.id}" />
           </>
         )
@@ -52,7 +51,7 @@ function generatorAllFields(arrFields) {
 //
 class SelectOptions extends React.Component {
   getOption(field) {
-    console.log(field);
+    // console.log(field);
     return <option value={field.key}>{field.label}</option>
   }
   render() {
