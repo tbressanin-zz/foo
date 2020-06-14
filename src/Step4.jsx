@@ -4,52 +4,65 @@ import * as Yup from 'yup';
 import data from "./data/form01.json";
 
 //
-//
+// Gerar os campos do formulário
 //
 function generatorAllFields(arrFields) {
 
+  // para cada campo, um formato diferente
   let generatorEachField = (field) => {
     switch (field.type) {
       case "short_text":
         return (
           <>
             <label htmlFor="{field.id}">{field.name}</label>
-            <Field name="{field.id}" as="select" />
+            <Field name="{field.id}" />
             <ErrorMessage name="{field.id}" />
           </>
         )
-        break;
-      case "short_text":
+      case "single_select":
         return (
           <>
             <label htmlFor="{field.id}">{field.name}</label>
-            <Field name="{field.id}" as="select" />
+            <Field name="{field.id}" />
             <ErrorMessage name="{field.id}" />
           </>
         )
-        break;
       case "dynamic_select":
         return (
           <>
             <label htmlFor="{field.id}">{field.name}</label>
-            <Field name="{field.id}" as="select" />
+            <Field name="{field.id}" as="select" placeholder="Favorite Color">
+              <SelectOptions data={field.options} />
+            </Field>
+
             <ErrorMessage name="{field.id}" />
           </>
         )
-        break;
+      default:
+        return (<>field not found !</>)
     }
   }
 
+  // laço nos campos do formulário
   return arrFields.map(generatorEachField);
 }
 
 //
+// para gerar as `options` dos selects
 //
+class SelectOptions extends React.Component {
+  getOption(field) {
+    console.log(field);
+    return <option value={field.key}>{field.label}</option>
+  }
+  render() {
+    return this.props.data.map(this.getOption);
+  }
+}
+
 //
 const initialValues = { firstName: '', lastName: '', email: '' };
 
-//
-//
 //
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -64,8 +77,6 @@ const validationSchema = Yup.object({
 })
 
 //
-//
-//
 const onSubmit = (values, { setSubmitting }) => {
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
@@ -74,15 +85,11 @@ const onSubmit = (values, { setSubmitting }) => {
 }
 
 //
-//
-//
 const FormStep3 = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       <Form>
-
         {generatorAllFields(data.fields)}
-
         <button type="submit">Submit</button>
       </Form>
     </Formik>
