@@ -55,15 +55,15 @@
             "options": [
                 {
                     "key": "123",
-                    "value": "Empresa 123"
+                    "label": "Empresa 123"
                 },
                 {
                     "key": "56",
-                    "value": "Empresa 456"
+                    "label": "Empresa 456"
                 },
                 {
                     "key": "789",
-                    "value": "Empresa 789"
+                    "label": "Empresa 789"
                 }
             ],
             "order": 3
