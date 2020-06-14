@@ -54,16 +54,16 @@
             "query": "select Id as Key, Nome as Value from Empresa",
             "options": [
                 {
-                    "key": "",
-                    "value": ""
+                    "key": "123",
+                    "value": "Empresa 123"
                 },
                 {
-                    "key": "",
-                    "value": ""
+                    "key": "56",
+                    "value": "Empresa 456"
                 },
                 {
-                    "key": "",
-                    "value": ""
+                    "key": "789",
+                    "value": "Empresa 789"
                 }
             ],
             "order": 3
