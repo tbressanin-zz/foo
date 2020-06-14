@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import React, { Component } from 'react';
 // import { Button, Form } from 'react-bootstrap';
-
 
 //
 // Escolha o exemplo
 //
-import FormBasic from './Step1';
-
+import FormBasic from './Step2';
 
 function App() {
   return (
