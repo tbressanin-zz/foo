@@ -22,12 +22,8 @@ function generatorAllFields(arrFields) {
 }
 
 //
-//
-//
 const initialValues = { firstName: '', lastName: '', email: '' };
 
-//
-//
 //
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -42,8 +38,6 @@ const validationSchema = Yup.object({
 })
 
 //
-//
-//
 const onSubmit = (values, { setSubmitting }) => {
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
@@ -51,8 +45,6 @@ const onSubmit = (values, { setSubmitting }) => {
   }, 400);
 }
 
-//
-//
 //
 const FormStep3 = () => {
   return (
