@@ -35,7 +35,7 @@ const onSubmit = (values, { setSubmitting }) => {
 //
 //
 //
-const FormStep1 = () => {
+const FormStep2 = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       <Form>
@@ -58,4 +58,4 @@ const FormStep1 = () => {
   );
 };
 
-export default FormStep1;
+export default FormStep2;

@@ -5,7 +5,7 @@ import React from 'react';
 //
 // Escolha o exemplo
 //
-import FormBasic from './Step2';
+import FormBasic from './Step3';
 
 function App() {
   return (
