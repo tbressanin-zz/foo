@@ -14,28 +14,28 @@ function generatorAllFields(arrFields) {
     switch (field.type) {
       case "short_text":
         return (
-          <Form.Group controlId="exampleForm.{field.id}">
+          <Form.Group controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
-            <Form.Control type="text" name="{field.id}" placeholder="Enter anything" />            
-            <ErrorMessage name="{field.id}" />
+            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
+            <ErrorMessage name={field.id} />
           </Form.Group>
         )
       case "single_select":
         return (
-          <Form.Group controlId="exampleForm.{field.id}">
+          <Form.Group controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
-            <Form.Control type="text" name="{field.id}" placeholder="Enter anything" />            
-            <ErrorMessage name="{field.id}" />
+            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
+            <ErrorMessage name={field.id} />
           </Form.Group>
         )
       case "dynamic_select":
         return (
-          <Form.Group controlId="exampleForm.{field.id}">
+          <Form.Group controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
             <Form.Control as="select" custom>
               <SelectOptions data={field.options} />
             </Form.Control>
-            <ErrorMessage name="{field.id}" />
+            <ErrorMessage name={field.id} />
           </Form.Group>
         )
       default:
