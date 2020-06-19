@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import data from "./data/form01.json";
@@ -14,7 +14,7 @@ function generatorAllFields(arrFields) {
     switch (field.type) {
       case "short_text":
         return (
-          <Form.Group controlId={"exampleForm." + field.id}>
+          <Form.Group key={field.id} controlId={"exampleForm." + field.id} >
             <Form.Label>{field.name}</Form.Label>
             <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
             <ErrorMessage name={field.id} />
@@ -22,7 +22,7 @@ function generatorAllFields(arrFields) {
         )
       case "single_select":
         return (
-          <Form.Group controlId={"exampleForm." + field.id}>
+          <Form.Group key={field.id} controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
             <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
             <ErrorMessage name={field.id} />
@@ -30,7 +30,7 @@ function generatorAllFields(arrFields) {
         )
       case "dynamic_select":
         return (
-          <Form.Group controlId={"exampleForm." + field.id}>
+          <Form.Group key={field.id} controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
             <Form.Control as="select" custom>
               <SelectOptions data={field.options} />
@@ -53,7 +53,7 @@ function generatorAllFields(arrFields) {
 class SelectOptions extends React.Component {
   getOption(field) {
     // console.log(field);
-    return <option value={field.key}>{field.label}</option>
+    return <option key={field.key} value={field.key}>{field.label}</option>
   }
   render() {
     return this.props.data.map(this.getOption);
@@ -85,10 +85,10 @@ const onSubmit = (values, { setSubmitting }) => {
 }
 
 //
-const FormStep4 = () => {
+const FormStep5 = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
-      <Form>
+      <Form key={123}>
         {generatorAllFields(data.fields)}
         <Button variant="primary" type="submit">Submit</Button>
       </Form>
@@ -96,4 +96,4 @@ const FormStep4 = () => {
   );
 };
 
-export default FormStep4;
+export default FormStep5;
