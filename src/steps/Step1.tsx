@@ -17,10 +17,11 @@ class Controls extends Component {
       <Form.Group controlId="exampleForm.SelectCustom">
         <Form.Label>{this.state?.formJson?.detail}</Form.Label>
         <Form.Control as="select" custom>
-          <option>option 1</option>
-          <option>option 2</option>
-          <option>option 3</option>
-          <option>option 4</option>
+          {this.state?.formJson?.fields.map(
+            field => {
+              return <option>{field.name}</option>
+            })
+          }
         </Form.Control>
       </Form.Group>
     )
