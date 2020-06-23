@@ -2,21 +2,21 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
-import data from "./data/form01.json";
+import data from "../services/form.json";
 
 //
 // Gerar os campos do formulário
 //
-function generatorAllFields(arrFields) {
+function generatorAllFields(arrFields: any) {
 
   // para cada campo, um formato diferente
-  let generatorEachField = (field) => {
+  let generatorEachField = (field: any) => {
     switch (field.type) {
       case "short_text":
         return (
           <Form.Group key={field.id} controlId={"exampleForm." + field.id} >
             <Form.Label>{field.name}</Form.Label>
-            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
+            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />
             <ErrorMessage name={field.id} />
           </Form.Group>
         )
@@ -24,7 +24,7 @@ function generatorAllFields(arrFields) {
         return (
           <Form.Group key={field.id} controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
-            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />            
+            <Form.Control type="text" name={field.id} placeholder={field.place_holder} />
             <ErrorMessage name={field.id} />
           </Form.Group>
         )
@@ -33,7 +33,7 @@ function generatorAllFields(arrFields) {
           <Form.Group key={field.id} controlId={"exampleForm." + field.id}>
             <Form.Label>{field.name}</Form.Label>
             <Form.Control as="select" custom>
-              <SelectOptions data={field.options} />
+              <SelectOptions children={field.options} />
             </Form.Control>
             <ErrorMessage name={field.id} />
           </Form.Group>
@@ -51,12 +51,12 @@ function generatorAllFields(arrFields) {
 // para gerar as `options` dos selects
 //
 class SelectOptions extends React.Component {
-  getOption(field) {
+  getOption(field: any) {
     // console.log(field);
     return <option key={field.key} value={field.key}>{field.label}</option>
   }
   render() {
-    return this.props.data.map(this.getOption);
+    return (this.props as any).data.map(this.getOption);
   }
 }
 
@@ -77,7 +77,7 @@ const validationSchema = Yup.object({
 })
 
 //
-const onSubmit = (values, { setSubmitting }) => {
+const onSubmit = (values: any, { setSubmitting }: any) => {
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
     setSubmitting(false);

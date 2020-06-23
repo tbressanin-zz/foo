@@ -6,13 +6,11 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 class Controls extends Component {
-
   public state: StateModel = {
     loaded: false,
     formJson: null,
     validationSchema: Yup.object({})
   };
-
 
   setValidationSchema(fields: any[]) {
     //TODO

@@ -1,6 +1,25 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import data from "../services/form.json";
+
+//
+//
+//
+function generatorAllFields(arrFields: any) {
+
+  let generatorEachField = (field: any) => {
+    return (
+      <>
+        <label htmlFor="{field.id}">{field.name}</label>
+        <Field name="{field.id}" type="text" />
+        <ErrorMessage name="{field.id}" />
+      </>
+    )
+  }
+
+  return arrFields.map(generatorEachField);
+}
 
 //
 const initialValues = { firstName: '', lastName: '', email: '' };
@@ -19,7 +38,7 @@ const validationSchema = Yup.object({
 })
 
 //
-const onSubmit = (values, { setSubmitting }) => {
+const onSubmit = (values: any, { setSubmitting }: any) => {
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
     setSubmitting(false);
@@ -27,24 +46,12 @@ const onSubmit = (values, { setSubmitting }) => {
 }
 
 //
-// formik
-//
-const FormStep2 = () => {
+const FormStep3 = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} >
       <Form>
 
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text" />
-        <ErrorMessage name="firstName" />
-
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" />
-
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" />
+        {generatorAllFields(data.fields)}
 
         <button type="submit">Submit</button>
       </Form>
@@ -52,4 +59,4 @@ const FormStep2 = () => {
   );
 };
 
-export default FormStep2;
+export default FormStep3;

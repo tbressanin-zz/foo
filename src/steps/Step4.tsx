@@ -1,15 +1,15 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import data from "./data/form01.json";
+import data from "../services/form.json";
 
 //
 // Gerar os campos do formulário
 //
-function generatorAllFields(arrFields) {
+function generatorAllFields(arrFields: any) {
 
   // para cada campo, um formato diferente
-  let generatorEachField = (field) => {
+  let generatorEachField = (field: any) => {
     switch (field.type) {
       case "short_text":
         return (
@@ -32,7 +32,7 @@ function generatorAllFields(arrFields) {
           <>
             <label htmlFor="{field.id}">{field.name}</label>
             <Field name="{field.id}" as="select" placeholder="Favorite Color">
-              <SelectOptions data={field.options} />
+              <SelectOptions children={field.options} />
             </Field>
             <ErrorMessage name="{field.id}" />
           </>
@@ -50,12 +50,12 @@ function generatorAllFields(arrFields) {
 // para gerar as `options` dos selects
 //
 class SelectOptions extends React.Component {
-  getOption(field) {
+  getOption(field: any) {
     // console.log(field);
     return <option value={field.key}>{field.label}</option>
   }
   render() {
-    return this.props.data.map(this.getOption);
+    return (this.props.children as any).map(this.getOption);
   }
 }
 
@@ -76,7 +76,7 @@ const validationSchema = Yup.object({
 })
 
 //
-const onSubmit = (values, { setSubmitting }) => {
+const onSubmit = (values: any, { setSubmitting }: any) => {
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
     setSubmitting(false);
