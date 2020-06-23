@@ -2,16 +2,23 @@ import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import FormService from '../services/form-service'
 import { StateModel } from '../model/state.model';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 class Controls extends Component {
 
   public state: StateModel = {
     loaded: false,
-    formJson: null
+    formJson: null,
+    validationSchema: Yup.object({})
   };
 
+
+  setValidationSchema(fields: any[]) {
+    //TODO
+  }
+
   renderField() {
-    // console.log(field);
     console.log('form json', this.state.formJson);
     return (
       <Form.Group controlId="exampleForm.SelectCustom">
@@ -31,6 +38,7 @@ class Controls extends Component {
     await FormService.getFormData().then((res: any) => {
       setTimeout(() => {
         this.setState({ formJson: res, loaded: true });
+        this.setValidationSchema([]);
       }, 1000);
     });
   }
