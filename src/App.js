@@ -1,21 +1,23 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Step } from './step-view/step';
 
-//
-// Escolha o exemplo
-// Step(n).tsx
-//
-import FormBasic from './steps/Step1.tsx';
 
 function App() {
+  const {
+    isActive,
+    displayPrevious,
+    displayNext,
+    displaySubmit,
+    component,
+    children,
+  } = this.props;
+
+  if (isActive === false) return null;
+
   return (
-    <Container fluid="md">
-      <Row>
-        <Col>
-          <FormBasic />
-        </Col>
-      </Row>
-    </Container>
+    <React.Fragment>
+      <Step/>
+    </React.Fragment>
   );
 }
 
