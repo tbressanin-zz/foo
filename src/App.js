@@ -1,24 +1,20 @@
-import React from 'react';
-import { Step } from './step-view/step';
+import React, { Component, useState } from 'react';
+import StepView from './steps/step-view'
+class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      currentView: 1
+    }
+  }
 
-function App() {
-  const {
-    isActive,
-    displayPrevious,
-    displayNext,
-    displaySubmit,
-    component,
-    children,
-  } = this.props;
+  render() {
+    console.log('view', this.state)
 
-  if (isActive === false) return null;
-
-  return (
-    <React.Fragment>
-      <Step/>
-    </React.Fragment>
-  );
+    return (
+        <StepView currentView={this.state.currentView} />
+    )
+  }
 }
-
 export default App;
